@@ -10,20 +10,15 @@ def seed_db():
 
         # Create Some organizations
         organizations = [
-             Organization(id=1, name='Hunters'),
-             Organization(id=2, name='Google'),
-             Organization(id=3, name='Databricks'),
-             Organization(id=4, name='Amazon')
+            Organization(id=1, name='Hunters'),
+            Organization(id=2, name='Google'),
+            Organization(id=3, name='Databricks'),
+            Organization(id=4, name='Amazon')
         ]
 
-        # Create some detectors
-        suspicious_signin = [
-            Detector(name='suspicious_signin', organization_id=org.id)
-            for org in organizations
-        ]
-        platform_alerts = [
-            Detector(name='platform_alerts', organization_id=org.id)
-            for org in organizations
+        detectors = [
+            Detector(id=1, name='suspicious_signin'),
+            Detector(id=2, name='platform_alerts')
         ]
 
         # Insert organizations
@@ -31,7 +26,7 @@ def seed_db():
             db.session.add(org)
 
         # Insert detectors
-        for detector in suspicious_signin + platform_alerts:
+        for detector in detectors:
             db.session.add(detector)
 
         db.session.commit()
